@@ -12,10 +12,10 @@ namespace Task.Application.Features.Tasks.Queries.GetTasksList
 {
     public class GetTasksListQueryHandler : IRequestHandler<GetTasksListQuery, List<MyTaskVm>>
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly IEmployeeRepository _taskRepository;
         private readonly IMapper _mapper;
 
-        public GetTasksListQueryHandler(ITaskRepository taskRepository, IMapper mapper)
+        public GetTasksListQueryHandler(IEmployeeRepository taskRepository, IMapper mapper)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;

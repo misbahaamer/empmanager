@@ -20,7 +20,7 @@ namespace Task.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("TaskConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
-            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IEmployeeRepository, TaskRepository>();
 
 
 

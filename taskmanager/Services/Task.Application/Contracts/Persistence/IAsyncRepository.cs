@@ -23,6 +23,7 @@ namespace Task.Application.Contracts.Persistence
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
         System.Threading.Tasks.Task UpdateAsync(T entity);
- 
+        System.Threading.Tasks.Task DeleteAsync(T entity);
+
     }
 }

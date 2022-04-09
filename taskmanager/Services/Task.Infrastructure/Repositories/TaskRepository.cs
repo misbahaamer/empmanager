@@ -10,7 +10,7 @@ using Task.Infrastructure.Persistance;
 
 namespace Task.Infrastructure.Repositories
 {
-    public class TaskRepository : RepositoryBase<Employee>, ITaskRepository
+    public class TaskRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
         public TaskRepository(TaskContext dbContext) : base(dbContext)
         {
