@@ -7,11 +7,8 @@ using Task.Domain.Common;
 
 namespace Task.Domain.Entities
 {
-    public class Employee : EntityBase
+    public class Benefit : EntityBase
     {
         public string Name { get; set; }
-        public decimal Salary { get; set; }
-
-
     }
 }

@@ -7,11 +7,9 @@ using Task.Domain.Common;
 
 namespace Task.Domain.Entities
 {
-    public class Employee : EntityBase
+    public class Dependent : EntityBase
     {
-        public string Name { get; set; }
-        public decimal Salary { get; set; }
-
-
+        public int EmployeeKey { get; set; }
+        public string Type { get; set; }
     }
 }

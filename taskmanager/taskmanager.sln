@@ -7,20 +7,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{82
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task.API", "Task.API", "{3C5C2600-E73F-4AD3-AF33-926BB8C629A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.API", "Services\Task.API\Task.API.csproj", "{56F9F01D-A23A-47BB-B92A-49EAFCEABB08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.API", "Services\Task.API\Task.API.csproj", "{56F9F01D-A23A-47BB-B92A-49EAFCEABB08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Domain", "Services\Task.Domain\Task.Domain.csproj", "{E073074C-653F-45B7-93EA-0EA979BD4987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Domain", "Services\Task.Domain\Task.Domain.csproj", "{E073074C-653F-45B7-93EA-0EA979BD4987}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Application", "Services\Task.Application\Task.Application.csproj", "{78414EF4-9058-4569-A2FC-121F6B7E0C08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Application", "Services\Task.Application\Task.Application.csproj", "{78414EF4-9058-4569-A2FC-121F6B7E0C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Infrastructure", "Services\Task.Infrastructure\Task.Infrastructure.csproj", "{FE3437C8-479A-4FB4-91B5-F1D201DF2C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Infrastructure", "Services\Task.Infrastructure\Task.Infrastructure.csproj", "{FE3437C8-479A-4FB4-91B5-F1D201DF2C60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScripts", "SqlScripts", "{BF888BF9-1103-4F70-A6AD-F74CA14E9094}"
 	ProjectSection(SolutionItems) = preProject
 		CreateDbTable.sql = CreateDbTable.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Services\Tests\Tests.csproj", "{27ADBD6F-24C6-40EE-BE70-CE3C5FB0C49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Services\Tests\Tests.csproj", "{27ADBD6F-24C6-40EE-BE70-CE3C5FB0C49B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Designer", "Designer", "{CB54F4AB-3DA7-4D8E-82AE-FA62408EBABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
