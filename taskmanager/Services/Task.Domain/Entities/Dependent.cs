@@ -11,6 +11,7 @@ namespace Task.Domain.Entities
     {
         public int EmployeeKey { get; set; }
         public string Type { get; set; }
+        public string Name { get; set; }
 
         public Employee Employee { get; set; }
         public ICollection<EmployeeBenefit> EmployeeBenefits { get; set; }

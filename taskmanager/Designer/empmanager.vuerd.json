@@ -122,7 +122,7 @@
           "active": false,
           "left": 170.4437,
           "top": 41.1117,
-          "zIndex": 20,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60
         },
@@ -180,6 +180,29 @@
             "id": "f7af3d9a-22e7-4c5a-96a4-07456c3e2b2f"
           },
           {
+            "name": "Name",
+            "comment": "",
+            "dataType": "VARCHAR",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 64.6005859375,
+              "widthDefault": 60
+            },
+            "id": "86c196c9-4093-4d6f-988c-0fc6a6751288"
+          },
+          {
             "name": "Type",
             "comment": "",
             "dataType": "VARCHAR",
@@ -204,10 +227,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 703.3325,
           "top": 30.0006,
-          "zIndex": 39,
+          "zIndex": 11,
           "widthName": 65.60986328125,
           "widthComment": 60
         },
@@ -384,7 +407,7 @@
           "active": false,
           "left": 654.7782,
           "top": 349.1092,
-          "zIndex": 71,
+          "zIndex": 4,
           "widthName": 100.28076171875,
           "widthComment": 60
         },
@@ -515,7 +538,7 @@
           "active": false,
           "left": 417.1121,
           "top": 629.9999,
-          "zIndex": 4,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60
         },
@@ -669,7 +692,7 @@
           "active": false,
           "left": 159,
           "top": 389,
-          "zIndex": 81,
+          "zIndex": 6,
           "widthName": 99.54443359375,
           "widthComment": 60
         },
@@ -731,7 +754,7 @@
           "active": false,
           "left": 1092.3333,
           "top": 342.222,
-          "zIndex": 73,
+          "zIndex": 5,
           "widthName": 60,
           "widthComment": 60
         },
@@ -765,7 +788,7 @@
             "f7af3d9a-22e7-4c5a-96a4-07456c3e2b2f"
           ],
           "x": 703.3325,
-          "y": 95.25059999999999,
+          "y": 105.50059999999999,
           "direction": "left"
         },
         "constraintName": "fk_employee_to_dependents",
@@ -782,7 +805,7 @@
             "ed1c618a-9757-401d-8fa8-5c4e06d22255"
           ],
           "x": 890.23728515625,
-          "y": 160.5006,
+          "y": 181.0006,
           "direction": "bottom"
         },
         "end": {

@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Task.Application\Task.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>
