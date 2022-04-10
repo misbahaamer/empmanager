@@ -10,5 +10,8 @@ namespace Task.Domain.Entities
     public class Benefit : EntityBase
     {
         public string Name { get; set; }
+
+
+        public ICollection<EmployeeBenefit> EmployeeBenefits { get; set; }
     }
 }

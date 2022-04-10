@@ -15,5 +15,10 @@ namespace Task.Domain.Entities
         public decimal EmployeeCost { get; set; }
         public decimal DependentCost { get; set; }
         public decimal TotalCost { get; set; }
+
+
+        public Employee Employee { get; set; }
+        public Dependent Dependent { get; set; }
+        public Benefit Benefit { get; set; }
     }
 }

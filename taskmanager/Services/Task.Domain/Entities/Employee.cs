@@ -13,5 +13,8 @@ namespace Task.Domain.Entities
         public decimal Salary { get; set; }
 
 
+        public EmployeePayroll EmployeePayroll { get; set; }
+        public ICollection<Dependent> Dependents { get; set; }
+        public ICollection<EmployeeBenefit> EmployeeBenefits { get; set; }
     }
 }

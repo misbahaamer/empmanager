@@ -14,5 +14,9 @@ namespace Task.Domain.Entities
         public decimal Deduction { get; set; }
         public decimal NetAmount { get; set; }
         public DateTime PayDate { get; set; }
+
+
+
+        public Employee Employee { get; set; }
     }
 }
