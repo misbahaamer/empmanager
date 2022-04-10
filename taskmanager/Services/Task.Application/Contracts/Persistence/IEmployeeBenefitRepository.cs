@@ -7,8 +7,8 @@ using Task.Domain.Entities;
 
 namespace Task.Application.Contracts.Persistence
 {
-    public interface IBenefitRepository : IAsyncRepository<Benefit>  
+    public interface IEmployeeBenefitRepository : IAsyncRepository<EmployeeBenefit>
     {
-        
+        Task<IEnumerable<EmployeeBenefit>> SaveEmployeeBenefit(EmployeeBenefit employeeBenefit);
     }
 }

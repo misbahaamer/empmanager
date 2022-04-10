@@ -16,7 +16,11 @@ namespace Task.Infrastructure.Persistance
         {
         }
 
-        public DbSet<Employee> Tasks { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Dependent> Dependents { get; set; }
+        public DbSet<Benefit> Benefits { get; set; }
+        public DbSet<EmployeeBenefit> EmployeeBenefits { get; set; }
+        public DbSet<EmployeePayroll> EmployeePayrolls { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

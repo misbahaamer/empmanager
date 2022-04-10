@@ -76,5 +76,10 @@ namespace Task.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async  System.Threading.Tasks.Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

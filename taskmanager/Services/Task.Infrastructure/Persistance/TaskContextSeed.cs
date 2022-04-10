@@ -14,27 +14,45 @@ namespace Task.Infrastructure.Persistance
         {
             if (!taskContext.Tasks.Any())
             {
-                taskContext.Tasks.AddRange(GetPreconfiguredOrders());
+                taskContext.Tasks.AddRange(GetPreconfiguredEmployees());
                 await taskContext.SaveChangesAsync();
                 logger.LogInformation("Seed database associated with context {DbContextName}", typeof(TaskContext).Name);
             }
         }
 
-        private static IEnumerable<Employee> GetPreconfiguredOrders()
+        private static IEnumerable<Employee> GetPreconfiguredEmployees()
         {
-            List<string> priority = new List<string>() { "High", "Middle", "Low" };
-            List<string> status = new List<string>() { "New", "In Progress", "Finished" };
-            Random rnd1 = new Random();
-            Random rnd2 = new Random();
             return new List<Employee>
             {
                 new Employee
                 {
-                    Name = "Name: " + DateTime.Today.Date.ToString(),
-                    Description = "Description: " + DateTime.Now.Ticks,
-                    DueDate = DateTime.Today,
-                    Priority = priority[rnd1.Next(priority.Count)],
-                    Status = status[rnd2.Next(status.Count)]
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
+                },
+                new Employee
+                {
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
+                },
+                new Employee
+                {
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
+                },
+                new Employee
+                {
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
+                },
+                new Employee
+                {
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
+                },
+                new Employee
+                {
+                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Salary = 2000
                 }
             };
         }

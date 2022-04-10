@@ -14,11 +14,11 @@ namespace Task.Application.Features.Tasks.Commands.AddTask
 {
     public class AddTaskCommandHandler : IRequestHandler<AddTaskCommand, int>
     {
-        private readonly IEmployeeRepository _taskRepository;
+        private readonly IDependentRepository _taskRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<AddTaskCommandHandler> _logger;
 
-        public AddTaskCommandHandler(IEmployeeRepository taskRepository, IMapper mapper, ILogger<AddTaskCommandHandler> logger)
+        public AddTaskCommandHandler(IDependentRepository taskRepository, IMapper mapper, ILogger<AddTaskCommandHandler> logger)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;

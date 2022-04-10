@@ -13,10 +13,10 @@ namespace Task.Application.Behaviours
     public class SystemValidation<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
-        private readonly IEmployeeRepository _taskRepository;
+        private readonly IDependentRepository _taskRepository;
 
 
-        public SystemValidation(IEnumerable<IValidator<TRequest>> validators, IEmployeeRepository taskRepository)
+        public SystemValidation(IEnumerable<IValidator<TRequest>> validators, IDependentRepository taskRepository)
         {
             _validators = validators;
             _taskRepository = taskRepository;
