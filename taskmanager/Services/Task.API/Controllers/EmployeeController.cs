@@ -23,33 +23,33 @@ namespace Task.API.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet( Name = "GetEmployees")]
-        [ProducesResponseType(typeof(IEnumerable<MyTaskVm>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<MyTaskVm>>> GetTasks()
-        {
-            var query = new GetTasksListQuery();
-            var tasks = await _mediator.Send(query);
-            return Ok(tasks);
-        }
+        //[HttpGet( Name = "GetEmployees")]
+        //[ProducesResponseType(typeof(IEnumerable<MyTaskVm>), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<IEnumerable<MyTaskVm>>> GetTasks()
+        //{
+        //    var query = new GetTasksListQuery();
+        //    var tasks = await _mediator.Send(query);
+        //    return Ok(tasks);
+        //}
 
 
-        [HttpPost(Name = "AddTask")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> AddTask([FromBody] AddTaskCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
+        //[HttpPost(Name = "AddTask")]
+        //[ProducesResponseType((int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<int>> AddTask([FromBody] AddTaskCommand command)
+        //{
+        //    var result = await _mediator.Send(command);
+        //    return Ok(result);
+        //}
 
-        [HttpPut(Name = "UpdateTask")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<ActionResult> UpdateTask([FromBody] UpdateTaskCommand command)
-        {
-            await _mediator.Send(command);
-            return NoContent();
-        }
+        //[HttpPut(Name = "UpdateTask")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesDefaultResponseType]
+        //public async Task<ActionResult> UpdateTask([FromBody] UpdateTaskCommand command)
+        //{
+        //    await _mediator.Send(command);
+        //    return NoContent();
+        //}
 
 
     }

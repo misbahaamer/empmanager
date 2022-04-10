@@ -14,11 +14,11 @@ namespace Task.Application.Features.Tasks.Commands.UpdateTask
 {
     public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand>
     {
-        private readonly IDependentRepository _taskRepository;
+        private readonly IEmployeeRepository _taskRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UpdateTaskCommandHandler> _logger;
 
-        public UpdateTaskCommandHandler(IDependentRepository taskRepository, IMapper mapper, ILogger<UpdateTaskCommandHandler> logger)
+        public UpdateTaskCommandHandler(IEmployeeRepository taskRepository, IMapper mapper, ILogger<UpdateTaskCommandHandler> logger)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;

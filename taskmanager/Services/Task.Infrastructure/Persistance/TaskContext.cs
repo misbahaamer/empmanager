@@ -37,5 +37,14 @@ namespace Task.Infrastructure.Persistance
             }
             return base.SaveChangesAsync(cancellationToken);
         }
+
+        protected override void OnModelCreating(ModelBuilder model)
+        {
+            model.Entity<Dependent>().HasOne(x => x.Employee).WithMany(y => y.Dependents).HasForeignKey(z => z.EmployeeKey);
+            model.Entity<EmployeeBenefit>().HasOne(x => x.Benefit).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.BenefitKey);
+            model.Entity<EmployeeBenefit>().HasOne(x => x.Dependent).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.DependentKey);
+            model.Entity<EmployeeBenefit>().HasOne(x => x.Employee).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.EmployeeKey);
+            model.Entity<Employee>().HasOne(x => x.EmployeePayroll).WithOne(y =>y.Employee).HasForeignKey<EmployeePayroll>(z => z.EmployeeKey);
+        }
     }
 }

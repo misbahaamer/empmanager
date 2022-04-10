@@ -20,7 +20,7 @@ namespace Task.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SystemValidation<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SystemValidation<,>));
 
             return services;
         }
