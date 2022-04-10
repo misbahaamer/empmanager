@@ -14,16 +14,16 @@ namespace Task.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class TaskController : Controller
+    public class EmployeeController : Controller
     {
         private readonly IMediator _mediator;
 
-        public TaskController(IMediator mediator)
+        public EmployeeController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet( Name = "GetTasks")]
+        [HttpGet( Name = "GetEmployees")]
         [ProducesResponseType(typeof(IEnumerable<MyTaskVm>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<MyTaskVm>>> GetTasks()
         {

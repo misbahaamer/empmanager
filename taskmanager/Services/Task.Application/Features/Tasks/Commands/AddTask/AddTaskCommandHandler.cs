@@ -27,10 +27,11 @@ namespace Task.Application.Features.Tasks.Commands.AddTask
 
         public async Task<int> Handle(AddTaskCommand request, CancellationToken cancellationToken)
         {
-            var taskEntity = _mapper.Map<Employee>(request);
-            var newTask = await _taskRepository.AddAsync(taskEntity);
-            _logger.LogInformation($"Task is successfully created {newTask.Id}");
-            return newTask.Id;
+            //var taskEntity = _mapper.Map<Employee>(request);
+            //var newTask = await _taskRepository.AddAsync(taskEntity);
+            //_logger.LogInformation($"Task is successfully created {newTask.Id}");
+            //return newTask.Id;
+            throw new NotImplementedException();
         }
     }
 }

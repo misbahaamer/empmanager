@@ -10,42 +10,42 @@ using Task.Application.Contracts.Persistence;
 
 namespace Task.Application.Behaviours
 {
-    public class SystemValidation<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
-    {
-        private readonly IEnumerable<IValidator<TRequest>> _validators;
-        private readonly IDependentRepository _taskRepository;
+    //public class SystemValidation<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+    //{
+    //    private readonly IEnumerable<IValidator<TRequest>> _validators;
+    //    private readonly IDependentRepository _taskRepository;
 
 
-        public SystemValidation(IEnumerable<IValidator<TRequest>> validators, IDependentRepository taskRepository)
-        {
-            _validators = validators;
-            _taskRepository = taskRepository;
-        }
+    //    public SystemValidation(IEnumerable<IValidator<TRequest>> validators, IDependentRepository taskRepository)
+    //    {
+    //        _validators = validators;
+    //        _taskRepository = taskRepository;
+    //    }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-        {
-            var taskcount= await _taskRepository.GetTasksCountForPriorityAndStatusOnADate();
-            if (taskcount != null && taskcount.First().Value >= 100)
-            {
-                throw new ValidationException($"UnFinished High Priority Tasks have exceeded 100 for date{taskcount.First().Key.ToString()}: " + request.ToString());
-            }
+    //    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    //    {
+    //        var taskcount= await _taskRepository.GetTasksCountForPriorityAndStatusOnADate();
+    //        if (taskcount != null && taskcount.First().Value >= 100)
+    //        {
+    //            throw new ValidationException($"UnFinished High Priority Tasks have exceeded 100 for date{taskcount.First().Key.ToString()}: " + request.ToString());
+    //        }
 
-            if (_validators.Any())
-            {
-                var context = new ValidationContext<TRequest>(request);
+    //        if (_validators.Any())
+    //        {
+    //            var context = new ValidationContext<TRequest>(request);
 
-                var validationResults = await System.Threading.Tasks.Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
-                var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
+    //            var validationResults = await System.Threading.Tasks.Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+    //            var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
                 
 
-                if (failures.Count != 0)
-                {
-                    throw new ValidationException(failures);
-                }
+    //            if (failures.Count != 0)
+    //            {
+    //                throw new ValidationException(failures);
+    //            }
                     
                 
-            }
-            return await next();
-        }
-    }
+    //        }
+    //        return await next();
+    //    }
+    //}
 }

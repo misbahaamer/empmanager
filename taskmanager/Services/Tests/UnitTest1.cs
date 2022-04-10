@@ -18,7 +18,7 @@ namespace Tests
         {
             //arrange
             var mediatr = new Mock<IMediator>();
-            var sut = new TaskController(mediatr.Object);
+            var sut = new EmployeeController(mediatr.Object);
             //act
             var res = await sut.GetTasks();
             Assert.IsType<OkObjectResult>(res.Result);
@@ -29,7 +29,7 @@ namespace Tests
         {
             //arrange
             var mediatr = new Mock<IMediator>();
-            var sut = new TaskController(mediatr.Object);
+            var sut = new EmployeeController(mediatr.Object);
             var command = new AddTaskCommand();
             command.Name = "Name: " + DateTime.Today.Date.ToShortDateString();
             command.Description = "Description: " + DateTime.Today.TimeOfDay.ToString();
@@ -47,7 +47,7 @@ namespace Tests
         {
             //arrange
             var mediatr = new Mock<IMediator>();
-            var sut = new TaskController(mediatr.Object);
+            var sut = new EmployeeController(mediatr.Object);
             var command = new UpdateTaskCommand();
             command.Id = 1;
             command.Name = "Name: " + DateTime.Today.Date.ToShortDateString();

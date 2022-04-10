@@ -12,9 +12,9 @@ namespace Task.Infrastructure.Persistance
     {
         public static async System.Threading.Tasks.Task SeedAsync(TaskContext taskContext, ILogger<TaskContextSeed> logger)
         {
-            if (!taskContext.Tasks.Any())
+            if (!taskContext.Employees.Any())
             {
-                taskContext.Tasks.AddRange(GetPreconfiguredEmployees());
+                taskContext.Employees.AddRange(GetPreconfiguredEmployees());
                 await taskContext.SaveChangesAsync();
                 logger.LogInformation("Seed database associated with context {DbContextName}", typeof(TaskContext).Name);
             }
