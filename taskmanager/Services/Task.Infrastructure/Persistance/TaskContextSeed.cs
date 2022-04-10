@@ -26,32 +26,32 @@ namespace Task.Infrastructure.Persistance
             {
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "David",
                     Salary = 2000
                 },
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "John",
                     Salary = 2000
                 },
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "Sam",
                     Salary = 2000
                 },
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "Mark",
                     Salary = 2000
                 },
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "Stan",
                     Salary = 2000
                 },
                 new Employee
                 {
-                    Name = "Name" +DateTime.Today.Date +DateTime.Today.Millisecond.ToString(),
+                    Name = "Rob",
                     Salary = 2000
                 }
             };
