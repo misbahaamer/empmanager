@@ -10,6 +10,7 @@ namespace Task.Application.Contracts.Persistence
     public interface IEmployeeRepository : IAsyncRepository<Employee>
     {
         Task<IEnumerable<Employee>> GetEmployeesByName(string name);
-        
+        Task<IEnumerable<Employee>> GetEmployeesAndTheirDependents();
+
     }
 }

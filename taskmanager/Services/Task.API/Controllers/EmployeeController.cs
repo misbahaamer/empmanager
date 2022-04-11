@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Task.Application.Features.Tasks.Commands.AddTask;
 using Task.Application.Features.Tasks.Commands.UpdateTask;
+using Task.Application.Features.Tasks.Queries.GetEmployees;
 using Task.Application.Features.Tasks.Queries.GetTasksList;
 
 namespace Task.API.Controllers
@@ -23,14 +24,14 @@ namespace Task.API.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        //[HttpGet( Name = "GetEmployees")]
-        //[ProducesResponseType(typeof(IEnumerable<MyTaskVm>), (int)HttpStatusCode.OK)]
-        //public async Task<ActionResult<IEnumerable<MyTaskVm>>> GetTasks()
-        //{
-        //    var query = new GetTasksListQuery();
-        //    var tasks = await _mediator.Send(query);
-        //    return Ok(tasks);
-        //}
+        [HttpGet(Name = "GetEmployees")]
+        [ProducesResponseType(typeof(IEnumerable<EmployeesVM>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<EmployeesVM>>> GetEmployees()
+        {
+            var query = new GetEmployeesQuery();
+            var tasks = await _mediator.Send(query);
+            return Ok(tasks);
+        }
 
 
         //[HttpPost(Name = "AddTask")]

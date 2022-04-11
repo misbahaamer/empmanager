@@ -10,9 +10,9 @@ using Task.Infrastructure.Persistance;
 
 namespace Task.Infrastructure.Repositories
 {
-    public class DependentReporisitory : RepositoryBase<Dependent>, IDependentRepository
+    public class DependentRepository : RepositoryBase<Dependent>, IDependentRepository
     {
-        public DependentReporisitory(TaskContext dbContext) : base(dbContext)
+        public DependentRepository(TaskContext dbContext) : base(dbContext)
         {
         }
 

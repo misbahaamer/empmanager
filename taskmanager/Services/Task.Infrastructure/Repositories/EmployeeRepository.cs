@@ -16,6 +16,27 @@ namespace Task.Infrastructure.Repositories
         {
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployeesAndTheirDependents()
+        {
+            List<Employee> employees = new List<Employee>();
+            var emps = await _dbContext.Employees.ToListAsync();
+            var deps = await _dbContext.Dependents.ToListAsync();
+            
+            
+            foreach (var emp in emps)
+            {
+                employees.Add(new Employee
+                {
+                    Id = emp.Id,
+                    Name = emp.Name,
+                    Salary = emp.Salary,
+                    Dependents = deps.Where(x => x.EmployeeKey == emp.Id).ToList()
+                });
+            }
+
+            return employees;
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployeesByName(string name)
         {
             var data = await _dbContext.Employees.Where(x => x.Name == name).ToListAsync();

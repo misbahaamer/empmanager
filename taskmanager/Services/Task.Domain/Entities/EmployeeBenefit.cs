@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Task.Domain.Common;
 
@@ -16,9 +17,11 @@ namespace Task.Domain.Entities
         public decimal DependentCost { get; set; }
         public decimal TotalCost { get; set; }
 
-
+        [JsonIgnore]
         public Employee Employee { get; set; }
+        [JsonIgnore]
         public Dependent Dependent { get; set; }
+        [JsonIgnore]
         public Benefit Benefit { get; set; }
     }
 }

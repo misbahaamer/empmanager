@@ -21,6 +21,7 @@ namespace Task.Infrastructure
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IDependentRepository, DependentRepository>();
 
 
 
