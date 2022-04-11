@@ -22,6 +22,7 @@ export default function MainPage() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
+        style={{ backgroundColor: "#162244" }}
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
