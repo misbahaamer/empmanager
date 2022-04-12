@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import MainPage from "./components/nav/MainPage";
-import MainContent from "./components/content/MainContent";
+
 import Box from "@mui/material/Box";
 import { Switch, Toolbar } from "@mui/material";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -10,8 +10,23 @@ import { Benefits } from "./components/content/Benefits";
 import { History } from "./components/content/History";
 import { Employees } from "./components/content/Employees";
 import { Dependents } from "./components/content/Dependents";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const employeesApi = "https://localhost:3867/api/v1/Employee";
+
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    getEmployees();
+  }, []);
+
+  async function getEmployees() {
+    const data = await fetch(employeesApi);
+    const res = await data.json();
+    setEmployees(res);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,7 +36,10 @@ function App() {
             <Route path="/Admin" element={<Admin />}></Route>
             <Route path="/Benefits" element={<Benefits />}></Route>
             <Route path="/History" element={<History />}></Route>
-            <Route path="/Employees" element={<Employees />}></Route>
+            <Route
+              path="/Employees"
+              element={<Employees props={employees} />}
+            ></Route>
             <Route path="/Dependents" element={<Dependents />}></Route>
           </Routes>
         </Router>
