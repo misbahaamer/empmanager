@@ -16,16 +16,18 @@ function App() {
   const employeesApi = "https://localhost:3867/api/v1/Employee";
 
   const [employees, setEmployees] = useState([]);
+ 
 
   useEffect(() => {
     getEmployees();
   }, []);
 
-  async function getEmployees() {
+  const getEmployees = async () => {
     const data = await fetch(employeesApi);
     const res = await data.json();
     setEmployees(res);
-  }
+    return res;
+  };
 
   return (
     <div className="App">
@@ -40,7 +42,10 @@ function App() {
               path="/Employees"
               element={<Employees props={employees} />}
             ></Route>
-            <Route path="/Dependents" element={<Dependents />}></Route>
+            <Route
+              path="/Dependents"
+              element={<Dependents props={employees} />}
+            ></Route>
           </Routes>
         </Router>
       </header>

@@ -21,62 +21,17 @@ const StyledBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const rows = [
-  {
-    id: 1,
-    expense: "Light bill",
-    price: 20,
-    dueAt: new Date(2021, 6, 8),
-    isPaid: false,
-    paymentMethod: "",
-  },
-  {
-    id: 2,
-    expense: "Rent",
-    price: 30,
-    dueAt: new Date(2021, 7, 1),
-    isPaid: false,
-    paymentMethod: "",
-  },
-  {
-    id: 3,
-    expense: "Car insurance",
-    price: 40,
-    dueAt: new Date(2021, 7, 4),
-    isPaid: true,
-    paymentMethod: "Wire transfer",
-  },
-];
+export const EditDependent = (props) => {
+  const rows = props;
 
-export const EditDependent = () => {
   const columns = [
-    { field: "expense", headerName: "Expense", width: 160, editable: true },
+    { field: "name", headerName: "Name", width: 160, editable: true },
+
     {
-      field: "price",
-      headerName: "Price",
-      type: "number",
-      width: 120,
-      editable: true,
-    },
-    {
-      field: "dueAt",
-      headerName: "Due at",
-      type: "date",
-      width: 120,
-      editable: true,
-    },
-    {
-      field: "isPaid",
-      headerName: "Is paid?",
-      type: "boolean",
-      width: 140,
-      editable: true,
-    },
-    {
-      field: "paymentMethod",
-      headerName: "Payment method",
+      field: "type",
+      headerName: "Type",
       type: "singleSelect",
-      valueOptions: ["Credit card", "Wire transfer", "Cash"],
+      valueOptions: ["Spouse", "Child"],
       width: 160,
       editable: true,
       preProcessEditCellProps: (params) => {

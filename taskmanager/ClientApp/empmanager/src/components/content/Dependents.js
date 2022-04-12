@@ -1,8 +1,10 @@
 import {
   Autocomplete,
   Box,
+  Button,
   CircularProgress,
   Container,
+  Divider,
   Paper,
   TextField,
   Toolbar,
@@ -11,67 +13,19 @@ import {
 import React from "react";
 import { useEffect, useState } from "react";
 import { EditDependent } from "./EditDependent";
+import SendIcon from "@mui/icons-material/Send";
+import AddIcon from "@mui/icons-material/Add";
+import { gridNumberComparator } from "@mui/x-data-grid";
 
-export const Dependents = () => {
-  const topFilms = [
-    { title: "The Shawshank Redemption", year: 1994 },
-    { title: "The Godfather", year: 1972 },
-    { title: "The Godfather: Part II", year: 1974 },
-    { title: "The Dark Knight", year: 2008 },
-    { title: "12 Angry Men", year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: "Pulp Fiction", year: 1994 },
-    {
-      title: "The Lord of the Rings: The Return of the King",
-      year: 2003,
-    },
-    { title: "The Good, the Bad and the Ugly", year: 1966 },
-    { title: "Fight Club", year: 1999 },
-    {
-      title: "The Lord of the Rings: The Fellowship of the Ring",
-      year: 2001,
-    },
-    {
-      title: "Star Wars: Episode V - The Empire Strikes Back",
-      year: 1980,
-    },
-    { title: "Forrest Gump", year: 1994 },
-    { title: "Inception", year: 2010 },
-    {
-      title: "The Lord of the Rings: The Two Towers",
-      year: 2002,
-    },
-    { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-    { title: "Goodfellas", year: 1990 },
-    { title: "The Matrix", year: 1999 },
-    { title: "Seven Samurai", year: 1954 },
-    {
-      title: "Star Wars: Episode IV - A New Hope",
-      year: 1977,
-    },
-    { title: "City of God", year: 2002 },
-    { title: "Se7en", year: 1995 },
-    { title: "The Silence of the Lambs", year: 1991 },
-    { title: "It's a Wonderful Life", year: 1946 },
-    { title: "Life Is Beautiful", year: 1997 },
-    { title: "The Usual Suspects", year: 1995 },
-    { title: "Léon: The Professional", year: 1994 },
-    { title: "Spirited Away", year: 2001 },
-    { title: "Saving Private Ryan", year: 1998 },
-    { title: "Once Upon a Time in the West", year: 1968 },
-    { title: "American History X", year: 1998 },
-    { title: "Interstellar", year: 2014 },
-  ];
-
+export const Dependents = (params) => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
-
-  function sleep(delay = 0) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, delay);
-    });
-  }
+  const types = ["Spouse", "Child"];
+  const [value, setValue] = React.useState(types[0]);
+  const [inputValue, setInputValue] = useState("");
+  const [employees, setEmployees] = useState([]);
+  const [dependents, setDependents] = useState([]);
 
   useEffect(() => {
     let active = true;
@@ -81,8 +35,14 @@ export const Dependents = () => {
     }
 
     (async () => {
+      let data = populateDependentData();
+      let arr = [...data];
+      let options = arr.map((e) => {
+        return e.empName;
+      });
+      let names = options.filter((v, i) => options.indexOf(v) === i);
       if (active) {
-        setOptions([...topFilms]);
+        setOptions(names);
       }
     })();
 
@@ -96,7 +56,65 @@ export const Dependents = () => {
       setOptions([]);
     }
   }, [open]);
+
+  useEffect(() => {
+    populateDependentData();
+  }, []);
+
+  useEffect(() => {
+    displayDependentDataEffect();
+  }, []);
+
+  const populateDependentData = () => {
+    const emps = params.props;
+    let deps = [];
+    for (let i = 0; i < emps.length; i++) {
+      let obj = {
+        empid: Number,
+        empName: String,
+        depId: Number,
+        empKey: Number,
+        depName: String,
+        type: String,
+      };
+      const e = emps[i];
+      if (emps[i].dependents.length !== 0) {
+        for (let j = 0; j < emps[j].dependents.length; j++) {
+          const k = emps[i].dependents[j];
+          obj.empid = e.id;
+          obj.empName = e.name;
+          obj.empKey = e.id;
+          obj.depId = k.id;
+          obj.depName = k.name;
+          obj.type = k.type;
+          deps.push(obj);
+          obj = {};
+        }
+      } else {
+        obj.empid = e.id;
+        obj.empName = e.name;
+        obj.empKey = e.id;
+        deps.push(obj);
+        obj = {};
+      }
+    }
+
+    return deps;
+  };
   const handleOnSubmit = () => {};
+  const displayDependentDataEffect = () => {
+    setDependents(displayDependentData());
+  };
+  const displayDependentData = (e, v) => {
+    const emps = populateDependentData();
+    const deps = emps.filter((x) => x.empName === v);
+    const depstypes = deps.map((e) => {
+      return [e.depName, e.type];
+    });
+    setDependents(depstypes);
+    console.log(dependents);
+    return depstypes;
+  };
 
   return (
     <Paper elevation={3} style={{ width: "800px" }}>
@@ -116,10 +134,12 @@ export const Dependents = () => {
               onClose={() => {
                 setOpen(false);
               }}
+              // onInputChange={(e, v) => displayDependentData(e, v)}
+              onChange={(e, v) => displayDependentData(e, v)}
               isOptionEqualToValue={(option, value) =>
                 option.title === value.title
               }
-              getOptionLabel={(option) => option.title}
+              getOptionLabel={(option) => option}
               options={options}
               loading={loading}
               renderInput={(params) => (
@@ -140,10 +160,53 @@ export const Dependents = () => {
                 />
               )}
             />
+            <br />
+
+            <Autocomplete
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={types}
+              sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Dependent Type" />
+              )}
+            />
+
+            <br />
+            <div style={{ textAlign: "left" }}>
+              <TextField
+                id="name"
+                label="Name"
+                variant="outlined"
+                sx={{ width: 300 }}
+              />
+
+              <Button
+                variant="contained"
+                endIcon={<AddIcon />}
+                style={{ backgroundColor: "#162244", margin: "10px" }}
+              >
+                Add
+              </Button>
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                style={{ backgroundColor: "#162244", margin: "10px" }}
+              >
+                Save
+              </Button>
+            </div>
           </form>
         </Box>
       </Container>
-      <EditDependent />
+      <EditDependent props={dependents} />
     </Paper>
   );
 };
