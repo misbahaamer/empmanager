@@ -31,7 +31,7 @@ namespace Task.API
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
 
-
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,7 +50,13 @@ namespace Task.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
             app.UseRouting();
 
             app.UseAuthorization();

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using Task.Application.Features.Tasks.Commands.AddTask;
 using Task.Application.Features.Tasks.Commands.UpdateTask;
 using Task.Application.Features.Tasks.Queries.GetEmployees;
-using Task.Application.Features.Tasks.Queries.GetTasksList;
+
 
 namespace Task.API.Controllers
 {
