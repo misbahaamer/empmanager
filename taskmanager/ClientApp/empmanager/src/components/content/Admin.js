@@ -49,9 +49,9 @@ export function Admin(params) {
     id: Number,
     employeeKey: Number,
     benefitKey: Number,
-    employeeCost: String,
-    dependentCost: String,
-    totalCost: String,
+    employeeCost: Number,
+    dependentCost: Number,
+    totalCost: Number,
   });
 
   const loading = open && options.length === 0;
@@ -160,7 +160,8 @@ export function Admin(params) {
     };
     const res = await fetch(employeesApi, requestOptions);
     const data = await res.json();
-    setPostId(data);
+    setEbReqRes(data);
+    setIsLoading(true);
   };
 
   return (
@@ -242,6 +243,15 @@ export function Admin(params) {
               </Button>
             </div>
           </form>
+          {isLoading ? (
+            <Typography variant="h6" gutterBottom component="div">
+              Estimated Cost for selected pay period for employee : $
+              {ebReqRes.employeeCost} , for all dependents : $
+              {ebReqRes.dependentCost} with Total: ${ebReqRes.totalCost}
+            </Typography>
+          ) : (
+            <></>
+          )}
         </Box>
       </Container>
       <EditDependent props={dependents} />
