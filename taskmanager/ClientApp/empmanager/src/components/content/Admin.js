@@ -19,6 +19,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { CalendarPickerSkeleton } from "@mui/x-date-pickers/CalendarPickerSkeleton";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay/PickersDay";
+import { EditDependent } from "./EditDependent";
 
 export function Admin(params) {
   const props = params.props;
@@ -27,9 +28,22 @@ export function Admin(params) {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
-  const [value, setValue] = React.useState(initialValue);
+  const [selectedDate, setSelectedDate] = React.useState(initialValue);
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
+  const [dateValue, setDateValue] = useState([]);
+  const [dependents, setDependents] = useState([
+    { id: Number, name: String, type: String, cost: String },
+  ]);
+
+  const [form, setFrom] = useState({
+    id: Number,
+    name: String,
+    type: String,
+    empKey: Number,
+    date: Date,
+  });
+
   const loading = open && options.length === 0;
 
   const handleMonthChange = (date) => {
@@ -66,6 +80,21 @@ export function Admin(params) {
       active = false;
     };
   }, [loading]);
+
+  const displayDependentData = (e, v) => {
+    setDependents([]);
+    setFrom({});
+
+    const emps = populateDependentData();
+    const deps = emps.filter((x) => x.empName === v);
+    const depstypes = deps.map((e) => {
+      return { id: e.depId, name: e.depName, type: e.type };
+    });
+    setDependents(depstypes);
+    let empid = deps.find((e) => true).empid;
+    setFrom({ id: empid, empKey: empid });
+    return depstypes;
+  };
 
   const populateDependentData = () => {
     const emps = params.props;
@@ -112,17 +141,8 @@ export function Admin(params) {
     return diffDays % 14;
   };
 
-  const displayDependentData = (e, v) => {
-    // setDependents([]);
-    // const emps = populateDependentData();
-    // const deps = emps.filter((x) => x.empName === v);
-    // const depstypes = deps.map((e) => {
-    //   return { id: e.depId, name: e.depName, type: e.type };
-    // });
-    // setDependents(depstypes);
-    // let empid = deps.find((e) => true).empid;
-    // setFrom({ empKey: empid });
-    // return depstypes;
+  const handleCreatePayrollClick = () => {
+    let obj = { ...form, date: dateValue };
   };
 
   return (
@@ -150,7 +170,6 @@ export function Admin(params) {
                 }
                 getOptionLabel={(option) => option}
                 options={options}
-                loading={loading}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -171,10 +190,10 @@ export function Admin(params) {
               />
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  value={value}
+                  value={dateValue}
                   //loading={isLoading}
                   onChange={(newValue) => {
-                    setValue(newValue);
+                    setDateValue(newValue);
                   }}
                   minDate={new Date("01/01/2022")}
                   maxDate={new Date("12/01/2022")}
@@ -199,14 +218,15 @@ export function Admin(params) {
                 variant="contained"
                 endIcon={<AddIcon />}
                 style={{ backgroundColor: "#162244", margin: "10px" }}
-                //onClick={handleOnAddClick}
+                onClick={handleCreatePayrollClick}
               >
-                Add
+                Calculate Payroll
               </Button>
             </div>
           </form>
         </Box>
       </Container>
+      <EditDependent props={dependents} />
     </Paper>
   );
 }

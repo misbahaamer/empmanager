@@ -40,6 +40,7 @@ export const EditDependent = (props) => {
         return { ...params.props, error: hasError };
       },
     },
+    { field: "cost", headerName: "Cost", width: 160, editable: true },
   ];
 
   return (

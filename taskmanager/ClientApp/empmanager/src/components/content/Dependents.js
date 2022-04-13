@@ -32,7 +32,7 @@ export const Dependents = (params) => {
     empkey: Number,
   });
   const [dependents, setDependents] = useState([
-    { id: Number, name: String, type: String },
+    { id: Number, name: String, type: String, cost: String },
   ]);
 
   useEffect(() => {
