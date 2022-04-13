@@ -43,6 +43,14 @@ export function Admin(params) {
     empKey: Number,
     date: Date,
   });
+  const [ebReqRes, setEbReqRes] = useState({
+    id: Number,
+    employeeKey: Number,
+    benefitKey: Number,
+    employeeCost: String,
+    dependentCost: String,
+    totalCost: String,
+  });
 
   const loading = open && options.length === 0;
 
