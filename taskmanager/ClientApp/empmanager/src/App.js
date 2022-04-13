@@ -35,7 +35,7 @@ function App() {
         <Router>
           <MainPage />
           <Routes>
-            <Route path="/Admin" element={<Admin />}></Route>
+            <Route path="/Admin" element={<Admin props={employees} />}></Route>
             <Route path="/Benefits" element={<Benefits />}></Route>
             <Route path="/History" element={<History />}></Route>
             <Route
