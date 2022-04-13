@@ -22,7 +22,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 export const EditDependent = (props) => {
-  const rows = props;
+  const rows = props.props;
 
   const columns = [
     { field: "name", headerName: "Name", width: 160, editable: true },

@@ -24,8 +24,16 @@ export const Dependents = (params) => {
   const types = ["Spouse", "Child"];
   const [value, setValue] = React.useState(types[0]);
   const [inputValue, setInputValue] = useState("");
-  const [employees, setEmployees] = useState([]);
-  const [dependents, setDependents] = useState([]);
+  const [name, setName] = useState("");
+  const [form, setFrom] = useState({
+    id: Number,
+    name: String,
+    type: String,
+    empkey: Number,
+  });
+  const [dependents, setDependents] = useState([
+    { id: Number, name: String, type: String },
+  ]);
 
   useEffect(() => {
     let active = true;
@@ -59,10 +67,6 @@ export const Dependents = (params) => {
 
   useEffect(() => {
     populateDependentData();
-  }, []);
-
-  useEffect(() => {
-    displayDependentDataEffect();
   }, []);
 
   const populateDependentData = () => {
@@ -101,19 +105,28 @@ export const Dependents = (params) => {
 
     return deps;
   };
-  const handleOnSubmit = () => {};
-  const displayDependentDataEffect = () => {
-    setDependents(displayDependentData());
-  };
+
   const displayDependentData = (e, v) => {
+    setDependents([]);
+
     const emps = populateDependentData();
     const deps = emps.filter((x) => x.empName === v);
     const depstypes = deps.map((e) => {
-      return [e.depName, e.type];
+      return { id: e.depId, name: e.depName, type: e.type };
     });
     setDependents(depstypes);
-    console.log(dependents);
+    let empid = deps.find((e) => true).empid;
+    setFrom({ empKey: empid });
     return depstypes;
+  };
+  const handleOnAddClick = () => {
+    let obj = { ...form, name: name, type: inputValue };
+    let newt = {
+      id: obj.empKey,
+      name: obj.name,
+      type: inputValue,
+    };
+    setDependents([...dependents, newt]);
   };
 
   return (
@@ -123,7 +136,7 @@ export const Dependents = (params) => {
           <Typography variant="h4" gutterBottom component="div">
             Add Dependents for an Employee
           </Typography>
-          <form onSubmit={handleOnSubmit}>
+          <form>
             <Autocomplete
               id="employees"
               sx={{ width: 300 }}
@@ -134,7 +147,6 @@ export const Dependents = (params) => {
               onClose={() => {
                 setOpen(false);
               }}
-              // onInputChange={(e, v) => displayDependentData(e, v)}
               onChange={(e, v) => displayDependentData(e, v)}
               isOptionEqualToValue={(option, value) =>
                 option.title === value.title
@@ -164,13 +176,10 @@ export const Dependents = (params) => {
 
             <Autocomplete
               value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
+              onChange={(e, v) => {
+                setInputValue(v);
               }}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
               options={types}
               sx={{ width: 300 }}
@@ -186,21 +195,19 @@ export const Dependents = (params) => {
                 label="Name"
                 variant="outlined"
                 sx={{ width: 300 }}
+                value={name}
+                onChange={(e, v) => {
+                  setName(e.target.value);
+                }}
               />
 
               <Button
                 variant="contained"
                 endIcon={<AddIcon />}
                 style={{ backgroundColor: "#162244", margin: "10px" }}
+                onClick={handleOnAddClick}
               >
                 Add
-              </Button>
-              <Button
-                variant="contained"
-                endIcon={<SendIcon />}
-                style={{ backgroundColor: "#162244", margin: "10px" }}
-              >
-                Save
               </Button>
             </div>
           </form>
