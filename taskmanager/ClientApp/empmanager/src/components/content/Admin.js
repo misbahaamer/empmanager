@@ -244,11 +244,22 @@ export function Admin(params) {
             </div>
           </form>
           {isLoading ? (
-            <Typography variant="h6" gutterBottom component="div">
-              Estimated Cost for selected pay period for employee : $
-              {ebReqRes.employeeCost} , for all dependents : $
-              {ebReqRes.dependentCost} with Total: ${ebReqRes.totalCost}
-            </Typography>
+            <div>
+              <Typography variant="h6" gutterBottom component="div">
+                Estimated Cost for selected pay period for employee : $
+                {ebReqRes.employeeCost} , for all dependents : $
+                {ebReqRes.dependentCost} with Total: ${ebReqRes.totalCost}
+              </Typography>
+
+              <Button
+                variant="contained"
+                endIcon={<AddIcon />}
+                style={{ backgroundColor: "#162244", margin: "10px" }}
+                //onClick={handleCreatePayrollClick}
+              >
+                Post Payroll
+              </Button>
+            </div>
           ) : (
             <></>
           )}
