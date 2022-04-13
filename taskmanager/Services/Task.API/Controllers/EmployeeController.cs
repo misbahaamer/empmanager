@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Task.Application.Features.Tasks.Commands.AddEmployeeBenefit;
 using Task.Application.Features.Tasks.Commands.AddTask;
 using Task.Application.Features.Tasks.Commands.UpdateTask;
 using Task.Application.Features.Tasks.Queries.GetEmployees;
-
+using Task.Domain.Entities;
 
 namespace Task.API.Controllers
 {
@@ -35,13 +36,13 @@ namespace Task.API.Controllers
         }
 
 
-        //[HttpPost(Name = "AddTask")]
-        //[ProducesResponseType((int)HttpStatusCode.OK)]
-        //public async Task<ActionResult<int>> AddTask([FromBody] AddTaskCommand command)
-        //{
-        //    var result = await _mediator.Send(command);
-        //    return Ok(result);
-        //}
+        [HttpPost(Name = "CalculateEmployeeCost")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult<EmployeeBenefit>> AddTask([FromBody] AddEmployeeBenefitCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
 
         //[HttpPut(Name = "UpdateTask")]
         //[ProducesResponseType(StatusCodes.Status204NoContent)]

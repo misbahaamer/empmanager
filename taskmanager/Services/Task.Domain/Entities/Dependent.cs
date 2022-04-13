@@ -16,6 +16,6 @@ namespace Task.Domain.Entities
 
         [JsonIgnore]
         public Employee Employee { get; set; }
-        public ICollection<EmployeeBenefit> EmployeeBenefits { get; set; }
+
     }
 }

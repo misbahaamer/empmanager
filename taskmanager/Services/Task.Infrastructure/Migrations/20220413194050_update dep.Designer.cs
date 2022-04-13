@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task.Infrastructure.Persistance;
 
 namespace Task.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    partial class TaskContextModelSnapshot : ModelSnapshot
+    [Migration("20220413194050_update dep")]
+    partial class updatedep
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,17 +99,17 @@ namespace Task.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("DependentCost")
-                        .HasColumnType("real");
+                    b.Property<double>("DependentCost")
+                        .HasColumnType("float");
 
-                    b.Property<float>("EmployeeCost")
-                        .HasColumnType("real");
+                    b.Property<double>("EmployeeCost")
+                        .HasColumnType("float");
 
                     b.Property<int>("EmployeeKey")
                         .HasColumnType("int");
 
-                    b.Property<float>("TotalCost")
-                        .HasColumnType("real");
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

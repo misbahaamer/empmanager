@@ -24,12 +24,14 @@ import { EditDependent } from "./EditDependent";
 export function Admin(params) {
   const props = params.props;
   const initialValue = new Date();
+  const employeesApi = "https://localhost:3867/api/v1/Employee";
 
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
   const [selectedDate, setSelectedDate] = React.useState(initialValue);
   const [open, setOpen] = useState(false);
+  const [postId, setPostId] = useState(0);
   const [options, setOptions] = useState([]);
   const [dateValue, setDateValue] = useState([]);
   const [dependents, setDependents] = useState([
@@ -40,8 +42,8 @@ export function Admin(params) {
     id: Number,
     name: String,
     type: String,
-    empKey: Number,
-    date: Date,
+    employeeKey: Number,
+    createdDate: Date,
   });
   const [ebReqRes, setEbReqRes] = useState({
     id: Number,
@@ -100,7 +102,7 @@ export function Admin(params) {
     });
     setDependents(depstypes);
     let empid = deps.find((e) => true).empid;
-    setFrom({ id: empid, empKey: empid });
+    setFrom({ id: empid, employeeKey: empid });
     return depstypes;
   };
 
@@ -149,8 +151,16 @@ export function Admin(params) {
     return diffDays % 14;
   };
 
-  const handleCreatePayrollClick = () => {
-    let obj = { ...form, date: dateValue };
+  const handleCreatePayrollClick = async () => {
+    let obj = { ...form, createdDate: dateValue };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(obj),
+    };
+    const res = await fetch(employeesApi, requestOptions);
+    const data = await res.json();
+    setPostId(data);
   };
 
   return (

@@ -42,7 +42,7 @@ namespace Task.Infrastructure.Persistance
         {
             model.Entity<Dependent>().HasOne(x => x.Employee).WithMany(y => y.Dependents).HasForeignKey(z => z.EmployeeKey).OnDelete(DeleteBehavior.NoAction);
             model.Entity<EmployeeBenefit>().HasOne(x => x.Benefit).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.BenefitKey).OnDelete(DeleteBehavior.NoAction);
-            model.Entity<EmployeeBenefit>().HasOne(x => x.Dependent).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.DependentKey).OnDelete(DeleteBehavior.NoAction);
+  
             model.Entity<EmployeeBenefit>().HasOne(x => x.Employee).WithMany(y => y.EmployeeBenefits).HasForeignKey(z => z.EmployeeKey).OnDelete(DeleteBehavior.NoAction);
             model.Entity<Employee>().HasOne(x => x.EmployeePayroll).WithOne(y =>y.Employee).HasForeignKey<EmployeePayroll>(z => z.EmployeeKey).OnDelete(DeleteBehavior.NoAction);
         }

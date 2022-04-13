@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task.Infrastructure.Persistance;
 
 namespace Task.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    partial class TaskContextModelSnapshot : ModelSnapshot
+    [Migration("20220413193814_rem dep key change type")]
+    partial class remdepkeychangetype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,21 +99,26 @@ namespace Task.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("DependentCost")
-                        .HasColumnType("real");
+                    b.Property<double>("DependentCost")
+                        .HasColumnType("float");
 
-                    b.Property<float>("EmployeeCost")
-                        .HasColumnType("real");
+                    b.Property<int?>("DependentId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("EmployeeCost")
+                        .HasColumnType("float");
 
                     b.Property<int>("EmployeeKey")
                         .HasColumnType("int");
 
-                    b.Property<float>("TotalCost")
-                        .HasColumnType("real");
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BenefitKey");
+
+                    b.HasIndex("DependentId");
 
                     b.HasIndex("EmployeeKey");
 
@@ -170,6 +177,10 @@ namespace Task.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("Task.Domain.Entities.Dependent", "Dependent")
+                        .WithMany("EmployeeBenefits")
+                        .HasForeignKey("DependentId");
+
                     b.HasOne("Task.Domain.Entities.Employee", "Employee")
                         .WithMany("EmployeeBenefits")
                         .HasForeignKey("EmployeeKey")
@@ -177,6 +188,8 @@ namespace Task.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Benefit");
+
+                    b.Navigation("Dependent");
 
                     b.Navigation("Employee");
                 });
@@ -193,6 +206,11 @@ namespace Task.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Task.Domain.Entities.Benefit", b =>
+                {
+                    b.Navigation("EmployeeBenefits");
+                });
+
+            modelBuilder.Entity("Task.Domain.Entities.Dependent", b =>
                 {
                     b.Navigation("EmployeeBenefits");
                 });
