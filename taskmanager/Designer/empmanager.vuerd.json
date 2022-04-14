@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -364,
-    "scrollLeft": -422,
-    "zoomLevel": 0.9,
+    "scrollTop": -217,
+    "scrollLeft": -364,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -288,29 +288,6 @@
             "id": "48e8fc05-0dad-47cd-87df-e40df29e90cf"
           },
           {
-            "name": "DependentKey",
-            "comment": "",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 88.0107421875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "d3d9dfeb-fdd1-4644-9e6d-00a68bf09a7c"
-          },
-          {
             "name": "BenefitKey",
             "comment": "",
             "dataType": "INT",
@@ -407,7 +384,7 @@
           "active": false,
           "left": 654.7782,
           "top": 349.1092,
-          "zIndex": 3,
+          "zIndex": 8,
           "widthName": 100.28076171875,
           "widthComment": 60
         },
@@ -800,32 +777,6 @@
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "d23b3b77-48ec-4272-9a73-af7eb9a0d98a",
-          "columnIds": [
-            "ed1c618a-9757-401d-8fa8-5c4e06d22255"
-          ],
-          "x": 890.23728515625,
-          "y": 181.0006,
-          "direction": "bottom"
-        },
-        "end": {
-          "tableId": "c3ebac8f-f393-4c0d-be41-6b54079eee1b",
-          "columnIds": [
-            "d3d9dfeb-fdd1-4644-9e6d-00a68bf09a7c"
-          ],
-          "x": 844.448121875,
-          "y": 349.1092,
-          "direction": "top"
-        },
-        "constraintName": "fk_dependent_to_employeebenefit",
-        "visible": true,
-        "id": "0a93ede3-3343-41fc-abf2-a97c0f849fb6"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
           "tableId": "e1ad35b9-d8b3-45c9-9bc0-c3edaf379b8a",
           "columnIds": [
             "d189e11e-bdaa-4525-95c3-7af8894e95ed"
@@ -840,7 +791,7 @@
             "48e8fc05-0dad-47cd-87df-e40df29e90cf"
           ],
           "x": 654.7782,
-          "y": 455.3592,
+          "y": 445.1092,
           "direction": "left"
         },
         "constraintName": "fk_employee_to_employeebenefit",
@@ -892,7 +843,7 @@
             "6ef8abf9-c885-4876-8180-80e14296c011"
           ],
           "x": 1034.11804375,
-          "y": 455.3592,
+          "y": 445.1092,
           "direction": "right"
         },
         "constraintName": "fk_benefit_to_employeebenefit",

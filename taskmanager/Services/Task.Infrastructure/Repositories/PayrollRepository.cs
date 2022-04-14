@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Task.Application.Contracts.Persistence;
 using Task.Domain.Entities;
 using Task.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace Task.Infrastructure.Repositories
 {
@@ -15,7 +16,12 @@ namespace Task.Infrastructure.Repositories
         {
         }
 
-       
+        public async Task<IEnumerable<EmployeePayroll>> GetEmployeePayrolls()
+        {
+            var emppays =  await _dbContext.EmployeePayrolls.ToListAsync();
+            return emppays;
+
+        }
 
         public async Task<EmployeePayroll> SaveEmployeePayroll(int id)
         {

@@ -26,7 +26,6 @@ namespace Task.Application.Features.Tasks.Queries.GetEmployees
         public async  Task<List<EmployeesVM>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
             var employees = await _empRepository.GetEmployeesAndTheirDependents();
-            var depedents = await _depRepository.GetAllAsync();
             var empdto =  _mapper.Map<List<EmployeesVM>>(employees);
             return empdto;
         }
