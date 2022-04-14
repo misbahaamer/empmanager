@@ -23,6 +23,7 @@ namespace Task.Infrastructure
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeBenefitRepository, EmployeeBenefitRepository>();
             services.AddScoped<IDependentRepository, DependentRepository>();
+            services.AddScoped<IPayrollRepository   , PayrollRepository>();
 
 
 

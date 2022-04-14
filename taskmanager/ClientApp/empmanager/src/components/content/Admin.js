@@ -24,7 +24,10 @@ import { EditDependent } from "./EditDependent";
 export function Admin(params) {
   const props = params.props;
   const initialValue = new Date();
-  const employeesApi = "https://localhost:3867/api/v1/Employee";
+  const employeesApi =
+    "https://localhost:3867/api/v1/Employee//api/v1/Employee/CalculateEmployeeCost";
+  const savePayApi =
+    "https://localhost:3867/api/v1/Employee/SaveEmployeePayroll";
 
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -239,7 +242,7 @@ export function Admin(params) {
                 style={{ backgroundColor: "#162244", margin: "10px" }}
                 onClick={handleCreatePayrollClick}
               >
-                Calculate Payroll
+                Calculate Estimate
               </Button>
             </div>
           </form>

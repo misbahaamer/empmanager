@@ -9,6 +9,6 @@ namespace Task.Application.Contracts.Persistence
 {
     public interface IPayrollRepository : IAsyncRepository<EmployeePayroll>
     {
-        Task<IEnumerable<EmployeePayroll>> SaveEmployeePayroll(EmployeePayroll employeePayroll);
+        Task<EmployeePayroll> SaveEmployeePayroll(int id);
     }
 }

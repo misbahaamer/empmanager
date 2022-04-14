@@ -8,8 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Task.Application.Features.Tasks.Commands.AddEmployeeBenefit;
-using Task.Application.Features.Tasks.Commands.AddTask;
-using Task.Application.Features.Tasks.Commands.UpdateTask;
+using Task.Application.Features.Tasks.Commands.AddPayroll;
 using Task.Application.Features.Tasks.Queries.GetEmployees;
 using Task.Domain.Entities;
 
@@ -31,28 +30,28 @@ namespace Task.API.Controllers
         public async Task<ActionResult<IEnumerable<EmployeesVM>>> GetEmployees()
         {
             var query = new GetEmployeesQuery();
-            var tasks = await _mediator.Send(query);
-            return Ok(tasks);
+            var emps = await _mediator.Send(query);
+            return Ok(emps);
         }
 
 
-        [HttpPost(Name = "CalculateEmployeeCost")]
+        [HttpPost("CalculateEmployeeCost", Name = "CalculateEmployeeCost")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<EmployeeBenefit>> AddTask([FromBody] AddEmployeeBenefitCommand command)
+        public async Task<ActionResult<EmployeeBenefit>> CalculateEmployeeCost([FromBody] AddEmployeeBenefitCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
-        //[HttpPut(Name = "UpdateTask")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesDefaultResponseType]
-        //public async Task<ActionResult> UpdateTask([FromBody] UpdateTaskCommand command)
-        //{
-        //    await _mediator.Send(command);
-        //    return NoContent();
-        //}
+        [HttpPost("SaveEmployeePayroll", Name = "SaveEmployeePayroll")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult<EmployeePayroll>> SaveEmployeePayroll([FromBody] AddPayrollCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+
 
 
     }

@@ -15,9 +15,25 @@ namespace Task.Infrastructure.Repositories
         {
         }
 
-        public Task<IEnumerable<EmployeePayroll>> SaveEmployeePayroll(EmployeePayroll employeePayroll)
+       
+
+        public async Task<EmployeePayroll> SaveEmployeePayroll(int id)
         {
-            throw new NotImplementedException();
+            var empben =   _dbContext.EmployeeBenefits.Where(x => x.Id == id).FirstOrDefault();
+            var emp = _dbContext.Employees.Where(x => x.Id == empben.EmployeeKey).FirstOrDefault();
+            EmployeePayroll pay = new EmployeePayroll();
+
+            pay.PayDate = (DateTime)empben.CreatedDate;
+            pay.GrossAmount = emp.Salary;
+            pay.Deduction = (decimal)empben.TotalCost;
+            pay.NetAmount = pay.GrossAmount - pay.Deduction;
+            pay.EmployeeKey = emp.Id;
+
+
+            await _dbContext.EmployeePayrolls.AddAsync(pay);
+            await _dbContext.SaveChangesAsync();
+
+            return pay;
         }
     }
 }
