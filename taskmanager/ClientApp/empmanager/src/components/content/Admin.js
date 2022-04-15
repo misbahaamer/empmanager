@@ -25,7 +25,7 @@ export function Admin(params) {
   const props = params.props;
   const initialValue = new Date();
   const employeesApi =
-    "https://localhost:3867/api/v1/Employee//api/v1/Employee/CalculateEmployeeCost";
+    "https://localhost:3867/api/v1/Employee/CalculateEmployeeCost";
   const savePayApi =
     "https://localhost:3867/api/v1/Employee/SaveEmployeePayroll";
 
@@ -154,7 +154,7 @@ export function Admin(params) {
     return diffDays % 14;
   };
 
-  const handleCreatePayrollClick = async () => {
+  const handleCreateEstimateClick = async () => {
     let obj = { ...form, createdDate: dateValue };
     const requestOptions = {
       method: "POST",
@@ -165,6 +165,19 @@ export function Admin(params) {
     const data = await res.json();
     setEbReqRes(data);
     setIsLoading(true);
+  };
+
+  const handleCreatePayrollClick = async () => {
+    let obj = { id: ebReqRes.id };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(obj),
+    };
+    const res = await fetch(savePayApi, requestOptions);
+    const data = await res.json();
+    setEbReqRes(data);
+    setIsLoading(false);
   };
 
   return (
@@ -240,7 +253,7 @@ export function Admin(params) {
                 variant="contained"
                 endIcon={<AddIcon />}
                 style={{ backgroundColor: "#162244", margin: "10px" }}
-                onClick={handleCreatePayrollClick}
+                onClick={handleCreateEstimateClick}
               >
                 Calculate Estimate
               </Button>
@@ -258,7 +271,7 @@ export function Admin(params) {
                 variant="contained"
                 endIcon={<AddIcon />}
                 style={{ backgroundColor: "#162244", margin: "10px" }}
-                //onClick={handleCreatePayrollClick}
+                onClick={handleCreatePayrollClick}
               >
                 Post Payroll
               </Button>
