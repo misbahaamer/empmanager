@@ -7,6 +7,8 @@ using Task.Application.Contracts.Persistence;
 using Task.Domain.Entities;
 using Task.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
+using Task.Application.Features.Tasks.Queries.GetPayrolls;
+using AutoMapper;
 
 namespace Task.Infrastructure.Repositories
 {
@@ -16,10 +18,47 @@ namespace Task.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<EmployeePayroll>> GetEmployeePayrolls()
+        public async Task<IEnumerable<PayrollVM>> GetEmployeePayrolls()
         {
+            List<PayrollVM> payrolls = new List<PayrollVM>();
+            
             var emppays =  await _dbContext.EmployeePayrolls.ToListAsync();
-            return emppays;
+            var emps = await _dbContext.Employees.ToListAsync();
+            var empbens = await _dbContext.EmployeeBenefits.ToListAsync();
+            var deplist = await _dbContext.Dependents.ToListAsync();
+
+            foreach (var item in emppays)
+            {
+                var emp = emps.Where(x => x.Id == item.EmployeeKey).FirstOrDefault();
+                var empben = empbens.Where(x => x.EmployeeKey == item.EmployeeKey).FirstOrDefault();
+                var deps = deplist.Where(x => x.EmployeeKey == item.EmployeeKey);
+                PayrollVM pay = new PayrollVM();
+                pay.Id = item.Id;
+                pay.EmployeeName = emp.Name;
+                pay.PayDate = item.PayDate;
+                pay.Salary = emp.Salary;
+                pay.TakeHome = item.NetAmount;
+                
+                int cnt = 0;
+         
+                List<BreakDown> brs = new List<BreakDown>();
+                foreach (var a in deps)
+                {
+                    
+                    BreakDown br = new BreakDown();
+                    br.Type = cnt == 0 ? "Self" : "Dependent";
+                    br.Count = cnt == 0 ? 1 : deps.ToList().Count;
+                    br.Deduction = (decimal)(cnt == 0 ? empben.EmployeeCost : empben.DependentCost);
+                    br.Date = item.PayDate;
+                    brs.Add(br);
+                    
+                    cnt++;
+                }
+                pay.BreakDowns =  new List<BreakDown>(brs);
+                payrolls.Add(pay);
+                   
+            }
+            return payrolls;
 
         }
 

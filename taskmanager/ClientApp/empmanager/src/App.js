@@ -13,10 +13,9 @@ import { Dependents } from "./components/content/Dependents";
 import React, { useEffect, useState } from "react";
 
 function App() {
-  const employeesApi = "https://localhost:3867/api/v1/Employee";
+  const employeesApi = "https://localhost:3867/api/v1/Employee/GetEmployees";
 
   const [employees, setEmployees] = useState([]);
- 
 
   useEffect(() => {
     getEmployees();
